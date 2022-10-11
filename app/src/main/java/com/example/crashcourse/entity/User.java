@@ -1,31 +1,19 @@
-package com.example.crashcourse.user;
+package com.example.crashcourse.entity;
 
-public class userModel {
+public class User {
 
+    //OOP -> encapsulation
     private String fName;
     private String userName;
     private String password;
     private String email;
 
-    //constructors
-    public userModel(String fName, String userName, String password, String email) {
+    //creating constructors
+    public User(String fName, String userName, String password, String email) {
         this.fName = fName;
         this.userName = userName;
         this.password = password;
         this.email = email;
-    }
-
-    //toString
-
-
-    @Override
-    public String toString() {
-        return "userModel{" +
-                "fName='" + fName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
     }
 
     //getters & setters
@@ -46,18 +34,41 @@ public class userModel {
     }
 
     public void setfName(String fName) {
+        //check if empty string
+
+        //otherwise
         this.fName = fName;
     }
 
     public void setUserName(String userName) {
+        //check if empty string
+
+        //otherwise
         this.userName = userName;
     }
 
     public void setPassword(String password) {
+        //check if empty string
+
+        //otherwise
         this.password = password;
     }
 
     public void setEmail(String email) {
+        //check if empty string
+
+        //otherwise
         this.email = email;
+    }
+
+    //print obj to string
+    @Override
+    public String toString() {
+        return "userModel{" +
+                "fName='" + fName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
