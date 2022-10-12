@@ -59,14 +59,12 @@
         android:layout_below="@+id/userName" />
 
     <!--User Profile Input Text Field-->
-    <EditText
+    <Spinner
         android:id="@+id/userProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="User Profile Type"
-        android:textSize="20dp"
-        android:layout_below="@+id/password" />
+        android:layout_below="@id/password"
+        android:layout_marginTop="20dp"/>
 
     <!--Create User Button Field-->
     <Button

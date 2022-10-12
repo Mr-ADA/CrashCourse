@@ -3,13 +3,18 @@ package com.example.crashcourse.sysAdmin;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.crashcourse.EntityClass.User;
 import com.example.crashcourse.R;
 import com.example.crashcourse.databaseHelper.DatabaseHelper;
+
+import java.util.List;
 /*
 @File Name:sysAdmin_createUser.java
 @Brief: Controller Class - System Admin Create User
@@ -23,8 +28,8 @@ public class sysAdmin_createUser extends AppCompatActivity {
     //Reference to Layout Fields
     Button btn_createUser;
     EditText input_fName, input_userName,
-            input_password,input_Email,
-            input_userProfile;
+            input_password,input_Email;
+    Spinner spinner_userProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,10 @@ public class sysAdmin_createUser extends AppCompatActivity {
         input_Email =findViewById(R.id.userEmail);
         input_userName = findViewById(R.id.userName);
         input_password = findViewById(R.id.password);
-        input_userProfile = findViewById(R.id.userProfile);
+        spinner_userProfile = findViewById(R.id.userProfile);
+
+        // Loading spinner data from database
+        loadUserProfile();
 
         //System Admin Create User Button Listeners
         btn_createUser.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +58,7 @@ public class sysAdmin_createUser extends AppCompatActivity {
                             input_userName.getText().toString(),
                             input_password.getText().toString(),
                             input_Email.getText().toString(),
-                            input_userProfile.getText().toString());
+                            spinner_userProfile.toString());
                     Toast.makeText(sysAdmin_createUser.this,user.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
@@ -64,5 +72,29 @@ public class sysAdmin_createUser extends AppCompatActivity {
                 Toast.makeText(sysAdmin_createUser.this, "Sucessfully Created User = " + sucess,Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void loadUserProfile(){
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        List<String> userP = db.getuserP();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, userP);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner_userProfile.setAdapter(dataAdapter);
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
+                               long id) {
+        // On selecting a spinner item
+        String userP = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "You selected: " + userP,
+                Toast.LENGTH_LONG).show();
+
     }
 }
