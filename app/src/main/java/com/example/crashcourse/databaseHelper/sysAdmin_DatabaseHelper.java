@@ -13,19 +13,31 @@ import com.example.crashcourse.EntityClass.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+/*
+@File Name:sysAdmin_DatabaseHelper.java
+@Brief: Database Controller Class
+@Team:Crash Course
+@Author:Sean Yeo Degen [7564880]
+@Date: 12 - 10 - 22
+ */
+
+public class sysAdmin_DatabaseHelper extends SQLiteOpenHelper {
 
     //Static Variables to Database Tables -- For Future Use
+    //Table Shortcut Variables
     public static final String USER_TABLE = "USER_TABLE";
+    public static final String USER_PROFILE_TABLE = "USER_PROFILE_TABLE";
+
+    //Attributes Shortcut
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_USER_NAME = "userName";
     public static final String COLUMN_F_NAME = "fName";
     public static final String COLUMN_PASSWORD = "password";
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_USER_PROFILE = "userProfile";
-    public static final String USER_PROFILE_TABLE = "USER_PROFILE_TABLE";
 
-    public DatabaseHelper(@Nullable Context context) {
+
+    public sysAdmin_DatabaseHelper(@Nullable Context context) {
         super(context, "crashCourse.db", null, 1);
     }
 
@@ -42,7 +54,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
     }
-
+    /*
+    @Function: createUser(User user)
+    @User Story: 03
+    @Brief: System Admin to Create User Account
+    @Team:Crash Course
+    @Author:Sean Yeo Degen [7564880]
+    @Date: 12 - 10 - 22
+    */
     public boolean createUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -62,6 +81,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /*
+    @Function: getuserP()
+    @Brief: Auto Populate Spinner with User Profile items from Sqlite DB - USER_PROFILE_TABLE -
+    userprofile.
+    @Team:Crash Course
+    @Author:Sean Yeo Degen [7564880]
+    @Date: 12 - 10 - 22
+     */
     public List<String> getuserP(){
         List<String> list = new ArrayList<String>();
 
@@ -71,16 +98,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
 
-        // looping through all rows and adding to list
+        // Looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                list.add(cursor.getString(1));//adding 2nd column data
+                //0 == id column in User_Profile_table
+                //1 == userProfile column in User_Profile Table
+                list.add(cursor.getString(1));
             } while (cursor.moveToNext());
         }
-        // closing connection
+
+        // Closing connection
         cursor.close();
         db.close();
-        // returning lables
+
+        // Return all User Profile into a List
         return list;
     }
 
