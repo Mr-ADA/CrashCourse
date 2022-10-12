@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.crashcourse.EntityClass.User;
 import com.example.crashcourse.R;
+import com.example.crashcourse.databaseHelper.DatabaseHelper;
 /*
 @File Name:sysAdmin_createUser.java
 @Brief: Controller Class - System Admin Create User
@@ -41,12 +42,26 @@ public class sysAdmin_createUser extends AppCompatActivity {
         btn_createUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = new User(input_fName.getText().toString(),
-                        input_userName.getText().toString(),
-                        input_password.getText().toString(),
-                        input_Email.getText().toString(),
-                        input_userProfile.getText().toString());
-                Toast.makeText(sysAdmin_createUser.this,user.toString(), Toast.LENGTH_SHORT).show();
+
+                User user = null;
+
+                try {
+                    user = new User(input_fName.getText().toString(),
+                            input_userName.getText().toString(),
+                            input_password.getText().toString(),
+                            input_Email.getText().toString(),
+                            input_userProfile.getText().toString());
+                    Toast.makeText(sysAdmin_createUser.this,user.toString(), Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e){
+                    Toast.makeText(sysAdmin_createUser.this,"Error Creater User", Toast.LENGTH_SHORT).show();
+                }
+
+
+                //Reference to crashCourse DB - User Table
+                DatabaseHelper databaseHelper = new DatabaseHelper(sysAdmin_createUser.this);
+                boolean sucess = databaseHelper.createUser(user);
+                Toast.makeText(sysAdmin_createUser.this, "Sucessfully Created User = " + sucess,Toast.LENGTH_SHORT).show();
             }
         });
     }
