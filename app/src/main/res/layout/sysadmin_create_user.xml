@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".user.LoginView">
+
+    <TextView
+        android:id="@+id/txtCreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:paddingLeft="130dp"
+        android:paddingRight="100dp"
+        android:text="Create User"
+        android:textSize="22dp" />
+
+    <!--Full Name Input Text Field-->
+    <EditText
+        android:id="@+id/fName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtCreateUser"
+        android:hint="Full Name"
+        android:textSize="20dp"
+        />
+
+    <!--Email Input Text Field-->
+    <EditText
+        android:id="@+id/userEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Email"
+        android:textSize="20dp"
+        android:inputType="textEmailAddress"
+        android:layout_below="@id/fName"/>
+
+    <!--Username Input Text Field-->
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Username"
+        android:textSize="20dp"
+        android:layout_below="@+id/userEmail"/>
+
+    <!--Password Input Text Field-->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:textSize="20dp"
+        android:layout_below="@+id/userName" />
+
+    <!--Create User Button Field-->
+    <Button
+        android:id="@+id/btnCreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Create User"
+        android:textSize="15dp"
+        android:layout_below="@id/password"
+        android:backgroundTint="@android:color/holo_blue_dark"/>
+
+
+
+</RelativeLayout>
