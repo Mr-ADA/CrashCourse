@@ -7,13 +7,16 @@ public class User {
     private String userName;
     private String password;
     private String email;
+    private String userProfile;
 
     //creating constructors
-    public User(String fName, String userName, String password, String email) {
+    public User(String fName, String userName, String password, String email, String userProfile) {
         this.fName = fName;
         this.userName = userName;
         this.password = password;
         this.email = email;
+        this.userProfile = userProfile;
+
     }
 
     //getters & setters
@@ -32,6 +35,8 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    public String getUserProfile() { return userProfile; }
 
     public void setfName(String fName) {
         //check if empty string
@@ -61,6 +66,10 @@ public class User {
         this.email = email;
     }
 
+    public void setUserProfile(String email){
+        this.userProfile = userProfile;
+    }
+
     //print obj to string
     @Override
     public String toString() {
@@ -69,6 +78,7 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", userProfile='" + userProfile + '\'' +
                 '}';
     }
 }

@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CrashCourse"
         tools:targetApi="31" >
+        <!-- Change Starting Activity - For Future Use-->
         <activity
-            android:name=".user.LoginView"
+            android:name=".sysAdmin.sysAdmin_createUser"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
