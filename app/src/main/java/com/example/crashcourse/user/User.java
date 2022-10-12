@@ -1,4 +1,4 @@
-package com.example.crashcourse.entity;
+package com.example.crashcourse.user;
 
 public class User {
 

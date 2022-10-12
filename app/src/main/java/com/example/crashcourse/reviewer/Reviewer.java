@@ -1,6 +1,8 @@
-package com.example.crashcourse.entity;
+package com.example.crashcourse.reviewer;
 
-public class Reviewer extends User{
+import com.example.crashcourse.user.User;
+
+public class Reviewer extends User {
     public Reviewer(String fName, String userName, String password, String email) {
         super(fName, userName, password, email);
     }

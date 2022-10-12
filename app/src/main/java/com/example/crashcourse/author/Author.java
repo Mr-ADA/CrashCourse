@@ -1,6 +1,8 @@
-package com.example.crashcourse.entity;
+package com.example.crashcourse.author;
 
-public class Author extends User{
+import com.example.crashcourse.user.User;
+
+public class Author extends User {
 
     public Author(String fName, String userName, String password, String email) {
         super(fName, userName, password, email);
