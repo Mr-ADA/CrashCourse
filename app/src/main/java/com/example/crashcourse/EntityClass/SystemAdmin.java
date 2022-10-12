@@ -1,6 +1,4 @@
-package com.example.crashcourse.sysAdmin;
-
-import com.example.crashcourse.user.User;
+package com.example.crashcourse.EntityClass;
 
 public class SystemAdmin extends User {
 
