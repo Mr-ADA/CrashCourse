@@ -54,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:inputType="textPassword"
         android:hint="Password"
         android:textSize="20dp"
         android:layout_below="@+id/userName" />
@@ -76,7 +77,5 @@
         android:textSize="15dp"
         android:layout_below="@id/userProfile"
         android:backgroundTint="@android:color/holo_blue_dark"/>
-
-
 
 </RelativeLayout>
