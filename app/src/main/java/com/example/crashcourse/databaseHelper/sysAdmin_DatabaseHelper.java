@@ -37,6 +37,7 @@ public class sysAdmin_DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USER_PROFILE = "userProfile";
 
 
+
     public sysAdmin_DatabaseHelper(@Nullable Context context) {
         super(context, "crashCourse.db", null, 1);
     }
@@ -44,9 +45,18 @@ public class sysAdmin_DatabaseHelper extends SQLiteOpenHelper {
     //Will be called when the application is started. Code to Create DB
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //SQL COMMAND to CREATE USER_TABLE
         String createTableStatement = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + COLUMN_USER_NAME + " TEXT," + COLUMN_F_NAME + " TEXT, " + COLUMN_PASSWORD + " TEXT, " + COLUMN_EMAIL + " TEXT, " + COLUMN_USER_PROFILE + " TEXT)";
-
         db.execSQL(createTableStatement);
+
+        //SQL COMMAND TO CREATE USER_PROFILE_TABLE
+        String createUPTableStatement = "CREATE TABLE " + USER_PROFILE_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + COLUMN_USER_PROFILE + " TEXT)";
+        db.execSQL(createUPTableStatement);
+
+        //SQL COMMAND TO INSERT User Profile Default Values
+        String insertUPValuesStatement = "INSERT INTO " + USER_PROFILE_TABLE + " (" + COLUMN_ID + "," + COLUMN_USER_PROFILE + ") VALUES (1,'System Admin'), (2,'Author'), (3,'Reviewer'), (4,'Conference Chair')";
+        db.execSQL(insertUPValuesStatement);
+
     }
 
     //Forward compatibility for upcoming versions.
