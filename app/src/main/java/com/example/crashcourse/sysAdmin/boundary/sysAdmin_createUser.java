@@ -1,4 +1,4 @@
-package com.example.crashcourse.sysAdmin;
+package com.example.crashcourse.sysAdmin.boundary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +24,8 @@ User Story: 03.
 @Date: 12 - 10 - 22
  */
 
+
+
 public class sysAdmin_createUser extends AppCompatActivity {
     //Reference to Layout Fields
     Button btn_createUser;
@@ -43,8 +45,12 @@ public class sysAdmin_createUser extends AppCompatActivity {
         input_password = findViewById(R.id.password);
         spinner_userProfile = findViewById(R.id.userProfile);
 
+        //hardcode the value of the spinner
+        populateSpinner();
+
+
         // Loading spinner data from database
-        loadUserProfile();
+        //loadUserProfile(); //-> a bug, table user profile is not defined
 
         //System Admin Create User Button Listeners
         btn_createUser.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +64,7 @@ public class sysAdmin_createUser extends AppCompatActivity {
                             input_userName.getText().toString(),
                             input_password.getText().toString(),
                             input_Email.getText().toString(),
-                            spinner_userProfile.toString());
+                            spinner_userProfile.getSelectedItem().toString());
                     Toast.makeText(sysAdmin_createUser.this,user.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
@@ -96,5 +102,13 @@ public class sysAdmin_createUser extends AppCompatActivity {
         Toast.makeText(parent.getContext(), "You selected: " + userP,
                 Toast.LENGTH_LONG).show();
 
+    }
+
+    private void populateSpinner(){
+        Spinner uPSpinner = (Spinner) findViewById(R.id.userProfile);
+        ArrayAdapter<CharSequence> uPAdapter = ArrayAdapter.createFromResource(this, R.array.user_profile_array, android.R.layout.simple_spinner_dropdown_item);
+
+        uPAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        uPSpinner.setAdapter(uPAdapter);
     }
 }

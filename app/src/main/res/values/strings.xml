@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">CrashCourse</string>
+
+    <string-array name="user_profile_array">
+        <item>System Admin</item>
+        <item>Conference Chair</item>
+        <item>Reviewer</item>
+        <item>Author</item>
+    </string-array>
+
+
+    <string name="hello_message">Welcome, User</string>
 </resources>

@@ -32,8 +32,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Will be called when the application is started. Code to Create DB
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + COLUMN_USER_NAME + " TEXT," + COLUMN_F_NAME + " TEXT, " + COLUMN_PASSWORD + " TEXT, " + COLUMN_EMAIL + " TEXT, " + COLUMN_USER_PROFILE + " TEXT)";
-
+        String createTableStatement = "CREATE TABLE " + USER_TABLE +
+                "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + COLUMN_USER_NAME + " TEXT," + COLUMN_F_NAME + " TEXT, "
+                + COLUMN_PASSWORD + " TEXT, " + COLUMN_EMAIL + " TEXT, "
+                + COLUMN_USER_PROFILE + " TEXT)";
         db.execSQL(createTableStatement);
     }
 
