@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.crashcourse.EntityClass.User;
 import com.example.crashcourse.R;
-import com.example.crashcourse.databaseHelper.DatabaseHelper;
+import com.example.crashcourse.databaseHelper.sysAdmin_DatabaseHelper;
 
 import java.util.List;
 /*
@@ -65,22 +65,31 @@ public class sysAdmin_createUser extends AppCompatActivity {
                             input_password.getText().toString(),
                             input_Email.getText().toString(),
                             spinner_userProfile.getSelectedItem().toString());
+                    // Take note to add getSelectedItem()
                     Toast.makeText(sysAdmin_createUser.this,user.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
                     Toast.makeText(sysAdmin_createUser.this,"Error Creater User", Toast.LENGTH_SHORT).show();
                 }
 
-
                 //Reference to crashCourse DB - User Table
-                DatabaseHelper databaseHelper = new DatabaseHelper(sysAdmin_createUser.this);
+                sysAdmin_DatabaseHelper databaseHelper = new sysAdmin_DatabaseHelper(sysAdmin_createUser.this);
                 boolean sucess = databaseHelper.createUser(user);
                 Toast.makeText(sysAdmin_createUser.this, "Sucessfully Created User = " + sucess,Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    /*
+    @Function: loadUserProfile
+    @Brief: Whenever the Application is lauched, loadUserProfile() will take User Profile Data from
+    the USER_PROFILE_TABLE to populate items to the Spinner.
+    @Team:Crash Course
+    @Author:Sean Yeo Degen [7564880]
+    @Date: 12 - 10 - 22
+    */
     private void loadUserProfile(){
-        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        sysAdmin_DatabaseHelper db = new sysAdmin_DatabaseHelper(getApplicationContext());
         List<String> userP = db.getuserP();
 
         // Creating adapter for spinner
