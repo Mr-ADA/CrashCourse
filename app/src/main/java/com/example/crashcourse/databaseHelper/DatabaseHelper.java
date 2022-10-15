@@ -43,7 +43,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Forward compatibility for upcoming versions.
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
     }
 
     public boolean createUser(User user){
