@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.crashcourse.EntityClass.User;
+import com.example.crashcourse.EntityClass.UserAccount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,15 +72,15 @@ public class sysAdmin_DatabaseHelper extends SQLiteOpenHelper {
     @Author:Sean Yeo Degen [7564880]
     @Date: 12 - 10 - 22
     */
-    public boolean createUser(User user){
+    public boolean createUser(UserAccount userAccount){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_USER_NAME, user.getUserName());
-        cv.put(COLUMN_PASSWORD, user.getPassword());
-        cv.put(COLUMN_F_NAME, user.getfName());
-        cv.put(COLUMN_EMAIL, user.getEmail());
-        cv.put(COLUMN_USER_PROFILE, user.getUserProfile());
+        cv.put(COLUMN_USER_NAME, userAccount.getUserName());
+        cv.put(COLUMN_PASSWORD, userAccount.getPassword());
+        cv.put(COLUMN_F_NAME, userAccount.getfName());
+        cv.put(COLUMN_EMAIL, userAccount.getEmail());
+        cv.put(COLUMN_USER_PROFILE, userAccount.getUserProfile());
 
         long insert = db.insert(USER_TABLE,null,cv);
         if (insert == -1){

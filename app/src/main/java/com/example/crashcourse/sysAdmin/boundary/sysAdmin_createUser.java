@@ -1,17 +1,16 @@
-package com.example.crashcourse.sysAdmin;
+package com.example.crashcourse.sysAdmin.boundary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.crashcourse.EntityClass.User;
+import com.example.crashcourse.EntityClass.UserAccount;
+import com.example.crashcourse.sysAdmin.controller.sysAdmin_controller;
 import com.example.crashcourse.R;
 import com.example.crashcourse.databaseHelper.sysAdmin_DatabaseHelper;
 
@@ -25,7 +24,7 @@ User Story: 03.
 @Date: 12 - 10 - 22
  */
 
-public class sysAdmin_createUser extends AppCompatActivity {
+public class sysAdmin_createUser extends AppCompatActivity{
     //Reference to Layout Fields
     Button btn_createUser;
     EditText input_fName, input_userName,
@@ -52,16 +51,16 @@ public class sysAdmin_createUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                User user = null;
+                UserAccount userAccount = null;
 
                 try {
                     if (checkInputFields() == true) {
-                        user = new User(input_fName.getText().toString(),
+                        userAccount = new UserAccount(input_fName.getText().toString(),
                                 input_userName.getText().toString(),
                                 input_password.getText().toString(),
                                 input_Email.getText().toString(),
                                 spinner_userProfile.getSelectedItem().toString()); // Take note to add getSelectedItem()
-                        Toast.makeText(sysAdmin_createUser.this, user.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(sysAdmin_createUser.this, userAccount.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 catch (Exception e){
@@ -70,7 +69,7 @@ public class sysAdmin_createUser extends AppCompatActivity {
 
                 //Reference to crashCourse DB - User Table
                 sysAdmin_DatabaseHelper databaseHelper = new sysAdmin_DatabaseHelper(sysAdmin_createUser.this);
-                boolean sucess = databaseHelper.createUser(user);
+                boolean sucess = databaseHelper.createUser(userAccount);
                 Toast.makeText(sysAdmin_createUser.this, "Sucessfully Created User = " + sucess,Toast.LENGTH_SHORT).show();
             }
         });
@@ -96,29 +95,5 @@ public class sysAdmin_createUser extends AppCompatActivity {
 
         // attaching data adapter to spinner
         spinner_userProfile.setAdapter(dataAdapter);
-    }
-
-    private boolean checkInputFields(){
-        if (input_userName.length() == 0){
-            input_userName.setError("This field is required");
-            Toast.makeText(sysAdmin_createUser.this,"Username is required", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (input_password.length() == 0){
-            input_password.setError("This field is required");
-            Toast.makeText(sysAdmin_createUser.this,"Password is required", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (input_Email.length() == 0){
-            input_Email.setError("This field is required");
-            Toast.makeText(sysAdmin_createUser.this,"Email is required", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (input_fName.length() == 0){
-            input_fName.setError("This field is required");
-            Toast.makeText(sysAdmin_createUser.this,"Name is required", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
     }
 }
