@@ -63,6 +63,7 @@ public class sysAdmin_DatabaseHelper extends SQLiteOpenHelper {
     //Forward compatibility for upcoming versions.
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+
     }
     /*
     @Function: createUser(User user)
@@ -124,5 +125,4 @@ public class sysAdmin_DatabaseHelper extends SQLiteOpenHelper {
         // Return all User Profile into a List
         return list;
     }
-
 }
